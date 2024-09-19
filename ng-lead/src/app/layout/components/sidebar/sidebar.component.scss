@@ -1,0 +1,17 @@
+:host.sidebar-component {
+  & .sidenav-container {
+    margin-top: 0;
+    height: 100%;
+  }
+
+  &.is-mobile {
+    & .sidenav-container {
+      margin-top: 56;
+    }
+
+    flex: 1 0 auto;
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+}

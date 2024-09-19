@@ -1,0 +1,13 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sideNav
+    [mode]="isMobileValue ? 'over' : 'side'"
+    [fixedInViewport]="isMobileValue"
+    fixedTopGap="56"
+  >
+    <mat-nav-list>
+      <!-- Navbar links -->
+      <a mat-list-item routerLink="/">Home</a>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>
