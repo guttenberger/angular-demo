@@ -1,0 +1,22 @@
+.toolbar {
+  display: flex;
+}
+
+.hamburger {
+  color: white;
+}
+
+.spacer {
+  flex: 1 0 auto;
+}
+
+.app-name {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-left: 8px;
+}
+
+.username {
+  font-size: 1em;
+  white-space: nowrap;
+}
