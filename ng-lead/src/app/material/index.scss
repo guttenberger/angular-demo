@@ -1,0 +1,8 @@
+// index.scss
+@use "./_mat-toolbar_theme" as toolbar;
+@use "./mat-sidenav_theme" as sidenav;
+
+@mixin all-themes($theme) {
+  @include toolbar.theme($theme);
+  @include sidenav.theme($theme);
+}

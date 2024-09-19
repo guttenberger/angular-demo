@@ -1,5 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
 
+@use "@angular/material" as mat;
+@use "./app/material/index.scss" as customComponents;
+
+@include mat.core();
+
+// Define a dark theme
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$violet-palette,
+    ),
+  )
+);
+
+// Define a light theme
+$light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$blue-palette,
+    ),
+  )
+);
+
+html {
+  // Apply the light theme by default
+  @include mat.all-component-themes($light-theme);
+  @include customComponents.all-themes($light-theme);
+
+  // Apply the dark theme only when the user prefers light themes.
+  @media (prefers-color-scheme: light) {
+    // @include mat.all-component-themes($dark-theme);
+    // @include customComponents.all-themes($dark-theme);
+  }
+}
+
 html,
 body {
   height: 100%;

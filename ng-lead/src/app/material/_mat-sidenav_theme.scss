@@ -1,0 +1,25 @@
+@use "@angular/material" as mat;
+
+@mixin color($theme) {
+  .mat-sidenav {
+    background: mat.get-theme-color($theme, surface);
+
+    @if mat.get-theme-type($theme) == dark {
+      background-color: mat.get-theme-color($theme, primary, 10);
+      color: mat.get-theme-color($theme, primary, 20);
+    } @else {
+      color: mat.get-theme-color($theme, primary, 80);
+    }
+
+    .mat-drawer {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+@mixin theme($theme) {
+  @if mat.theme-has($theme, color) {
+    @include color($theme);
+  }
+}
