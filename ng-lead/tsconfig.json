@@ -3,6 +3,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@material/*": ["app/material/*"],
+      "@layout/*": ["app/layout/*"],
+      "@core/*": ["app/core/*"]
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
@@ -19,10 +25,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

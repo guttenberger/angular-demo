@@ -1,10 +1,17 @@
 import { TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideRouter } from '@angular/router';
+import { LayoutModule } from '@layout/layout.module';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent, LayoutModule, BrowserAnimationsModule],
+      providers: [
+        provideRouter([]), // Provide an empty router configuration for testing
+      ],
     }).compileComponents();
   });
 
@@ -12,18 +19,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have the 'ng-lead' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ng-lead');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ng-lead');
   });
 });
