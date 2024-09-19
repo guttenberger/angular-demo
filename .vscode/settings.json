@@ -1,8 +1,10 @@
 {
-    "editor.codeActionsOnSave":
-    {
+    "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "eslint.options": {
+        "overrideConfigFile": "/workspaces/typescript-node/ng-lead/eslint.config.js"
+    }
 }
