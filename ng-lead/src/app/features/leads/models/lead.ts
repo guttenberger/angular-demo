@@ -1,6 +1,6 @@
 export const LeadStatus = {
   New: 'New',
-  Contacted: 'Contacted',
+  Contacted: 'Interviewed',
   Qualified: 'Qualified',
   Placed: 'Placed',
   Rejected: 'Rejected',
