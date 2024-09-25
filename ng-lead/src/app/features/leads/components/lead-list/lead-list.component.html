@@ -1,1 +1,99 @@
-<p>lead-list works!</p>
+<mat-card>
+  <!-- Card Title Row -->
+  <mat-card-title class="card-title">
+    <div>{{ title }}</div>
+    <button
+      mat-flat-button
+      (click)="createNewLead()"
+      class="create-new-button"
+      *ngIf="viewModel.showCreateButton"
+    >
+      <mat-icon>add</mat-icon>
+      Create New
+    </button>
+  </mat-card-title>
+  <!-- Card Content -->
+  <mat-card-content>
+    <!-- Table -->
+    <table
+      mat-table
+      [dataSource]="isDataAvailable() ? leadsSignal() : skeletonData"
+      class="mat-elevation-z8"
+    >
+      <!-- Define Text Columns Dynamically -->
+      @for (column of textColumns; track column) {
+        <ng-container [matColumnDef]="column">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ column | propertyToTitle }}
+          </th>
+          <td mat-cell *matCellDef="let lead">
+            @if (isDataAvailable()) {
+              <!-- Text Cell -->
+              {{ lead[column] }}
+            } @else {
+              <!-- Skeleton Cell -->
+              <div class="skeleton-cell"></div>
+            }
+          </td>
+        </ng-container>
+      }
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let lead">
+          @if (isDataAvailable()) {
+            <button mat-button (click)="viewLead(lead.id)">View</button>
+            <button
+              mat-button
+              (click)="rejectLead(lead.id)"
+              *ngIf="!viewModel.showUnrejectButton"
+            >
+              <span class="reject-text">Reject</span>
+            </button>
+            <button
+              mat-button
+              (click)="unrejectLead(lead.id)"
+              *ngIf="viewModel.showUnrejectButton"
+            >
+              <span class="reject-text">Unreject</span>
+            </button>
+            <button
+              mat-button
+              (click)="qualifyLead(lead.id)"
+              *ngIf="viewModel.showQualifyButton"
+            >
+              <span class="qualify-text">Qualify</span>
+            </button>
+            <button
+              mat-button
+              (click)="contactedLead(lead.id)"
+              *ngIf="viewModel.showPlacedButton"
+            >
+              <span class="contacted-text">Interviewed</span>
+            </button>
+            <button
+              mat-button
+              (click)="placedLead(lead.id)"
+              *ngIf="viewModel.showPlacedButton"
+            >
+              <span class="placed-text">Placed</span>
+            </button>
+          }
+        </td>
+      </ng-container>
+
+      <!-- Header and Row Declarations -->
+      <tr mat-header-row *matHeaderRowDef="allColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: allColumns"></tr>
+    </table>
+
+    <!-- Empty Table -->
+    <div
+      *ngIf="isDataAvailable() && leadsSignal().length === 0"
+      class="empty-message"
+    >
+      No leads available.
+    </div>
+  </mat-card-content>
+</mat-card>

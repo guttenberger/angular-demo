@@ -1,0 +1,49 @@
+.card-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.empty-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: gray;
+}
+
+.qualify-text {
+  color: green;
+}
+
+.placed-text {
+  color: green;
+}
+
+.reject-text {
+  color: red;
+}
+
+.contacted-text {
+  color: blueviolet;
+}
+
+.skeleton-cell {
+  height: 20px;
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin: 4px 0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+// skeleton animation
+@keyframes pulse {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f5f5f5;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
