@@ -1,1 +1,39 @@
-<p>lead-form works!</p>
+<form [formGroup]="leadForm" (ngSubmit)="onSubmit()">
+  <mat-card class="card">
+    <!-- Card Title Row -->
+    <mat-card-title class="card-title">
+      <span>{{ sectionTitle }}</span>
+      <div class="actions">
+        <button mat-raised-button type="submit" [disabled]="leadForm.invalid">
+          {{ submitButtonText }}
+        </button>
+        @if (showDeleteButton) {
+          <button mat-button (click)="onDelete($event)">Delete Lead</button>
+        }
+      </div>
+    </mat-card-title>
+    <mat-card-content class="card-content">
+      <!-- From Group -->
+      <!-- Iterate over fields property -->
+      @for (field of fields; track field.formControlName) {
+        <mat-form-field appearance="outline">
+          <mat-label>{{ field.label }}</mat-label>
+          <input
+            matInput
+            [placeholder]="field.placeholder"
+            [formControlName]="field.formControlName"
+          />
+          <!-- Display error message if available -->
+          @if (
+            leadForm.get(field.formControlName)?.invalid &&
+            leadForm.get(field.formControlName)?.touched
+          ) {
+            <mat-error>
+              {{ field.errorMessage }}
+            </mat-error>
+          }
+        </mat-form-field>
+      }
+    </mat-card-content>
+  </mat-card>
+</form>
