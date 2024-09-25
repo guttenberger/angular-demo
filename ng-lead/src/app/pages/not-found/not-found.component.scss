@@ -1,0 +1,37 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  .not-found-link {
+    background-color: mat.get-theme-color($theme, primary, 20);
+  }
+
+  .not-found-link:hover {
+    background-color: mat.get-theme-color($theme, primary, 50);
+  }
+}
+
+:host.not-found-component {
+  text-align: center;
+  margin-top: 50px;
+  display: grid;
+  place-items: center;
+}
+
+.not-found-title {
+  font-size: 48px;
+  color: #dc3545;
+}
+
+.not-found-message {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.not-found-link {
+  margin-top: 20px;
+  padding: 10px 20px;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
