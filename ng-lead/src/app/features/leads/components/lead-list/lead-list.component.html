@@ -69,6 +69,7 @@
               mat-button
               (click)="contactedLead(lead.id)"
               *ngIf="viewModel.showPlacedButton"
+              [disabled]="lead.status === leadStatus.Contacted"
             >
               <span class="contacted-text">Interviewed</span>
             </button>

@@ -42,6 +42,7 @@ export class LeadListComponent implements OnInit {
   protected readonly isDataAvailable = computed(
     () => this.leadsSignal().length > 0 || !this.isLoadingSignal(),
   );
+  protected readonly leadStatus = LeadStatus;
 
   // Table properties
   protected readonly textColumns: (keyof Lead)[] = [

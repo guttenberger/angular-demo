@@ -22,7 +22,7 @@
   color: red;
 }
 
-.contacted-text {
+button.mat-mdc-button:not(:disabled) .contacted-text {
   color: blueviolet;
 }
 
