@@ -1,7 +1,7 @@
 :host.sidebar-component {
   & .sidenav-container {
     margin-top: 0;
-    height: 100%;
+    min-height: 100%;
   }
 
   &.is-mobile {

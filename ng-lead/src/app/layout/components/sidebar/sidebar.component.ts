@@ -1,11 +1,9 @@
 import {
-  Component,
-  ViewChild,
-  OnDestroy,
   AfterViewInit,
+  Component,
   HostBinding,
   inject,
-  ChangeDetectorRef,
+  ViewChild,
 } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Subscription } from 'rxjs';
@@ -19,47 +17,32 @@ import { SidebarService } from './services/sidebar.service';
   styleUrls: ['./sidebar.component.scss'],
   host: { class: 'sidebar-component' },
 })
-export class SidebarComponent implements OnDestroy, AfterViewInit {
-  private sidebarService = inject(SidebarService);
-  private responsiveService = inject(ResponsiveService);
-  private cdr = inject(ChangeDetectorRef);
+export class SidebarComponent implements AfterViewInit {
+  // Services
+  readonly #sidebarService = inject(SidebarService);
+  readonly #responsiveService = inject(ResponsiveService);
 
-  private subscriptions: Subscription = new Subscription();
+  // Subscriptions
+  readonly #subscriptions = new Subscription();
 
-  protected isMobileValue = false;
-
+  // Template Bindings
   @ViewChild(MatSidenav) sideNav!: MatSidenav;
+  @HostBinding('class.is-mobile') isMobile =
+    this.#responsiveService.isMobileSignal();
 
-  // Dynamically add the 'is-mobile' class to the host element
-  @HostBinding('class.is-mobile') get isMobile() {
-    return this.isMobileValue;
-  }
+  // State
+  protected isMobileSignal = this.#responsiveService.isMobileSignal;
 
   ngAfterViewInit(): void {
-    this.handleSidebarToggle(); // listen for toggle sidebar event
-    this.monitorScreenSize(); // listen for mobile screen size event
+    this.#toggleSidebar(); // Set up sidebar toggle event listener
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
-
-  private handleSidebarToggle(): void {
-    const sidebarSubscription = this.sidebarService.toggleSidebar$.subscribe(
-      () => {
+  #toggleSidebar(): void {
+    const sidebarToggleSubscription =
+      this.#sidebarService.toggleSidebar$.subscribe(() => {
         this.sideNav.toggle();
-      },
-    );
-    this.subscriptions.add(sidebarSubscription);
-  }
+      });
 
-  private monitorScreenSize(): void {
-    const mobileSubscription = this.responsiveService.isMobile$.subscribe(
-      (isMobile) => {
-        this.isMobileValue = isMobile;
-        this.cdr.detectChanges();
-      },
-    );
-    this.subscriptions.add(mobileSubscription);
+    this.#subscriptions.add(sidebarToggleSubscription);
   }
 }

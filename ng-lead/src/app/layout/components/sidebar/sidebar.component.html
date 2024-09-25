@@ -1,14 +1,25 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     #sideNav
-    [mode]="isMobileValue ? 'over' : 'side'"
-    [fixedInViewport]="isMobileValue"
+    [mode]="isMobileSignal() ? 'over' : 'side'"
+    [fixedInViewport]="isMobileSignal()"
     fixedTopGap="56"
   >
     <mat-nav-list>
       <!-- Navbar links -->
       <a mat-list-item routerLink="/" routerLinkActive="active">Home</a>
-      <a mat-list-item routerLink="/leads" routerLinkActive="active">Leads</a>
+      <a mat-list-item routerLink="/leads/new" routerLinkActive="active"
+        >New Leads</a
+      >
+      <a mat-list-item routerLink="/leads/qualified" routerLinkActive="active"
+        >Qualified Leads</a
+      >
+      <a mat-list-item routerLink="/leads/placed" routerLinkActive="active"
+        >Placed Leads</a
+      >
+      <a mat-list-item routerLink="/leads/rejected" routerLinkActive="active"
+        >Rejected Leads</a
+      >
     </mat-nav-list>
   </mat-sidenav>
 </mat-sidenav-container>
