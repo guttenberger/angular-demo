@@ -4,12 +4,12 @@
     <mat-card-title class="card-title">
       <span>{{ sectionTitle }}</span>
       <div class="actions">
-        <button mat-raised-button type="submit" [disabled]="leadForm.invalid">
-          {{ submitButtonText }}
-        </button>
         @if (showDeleteButton) {
           <button mat-button (click)="onDelete($event)">Delete Lead</button>
         }
+        <button mat-flat-button type="submit" [disabled]="leadForm.invalid">
+          {{ submitButtonText }}
+        </button>
       </div>
     </mat-card-title>
     <mat-card-content class="card-content">
