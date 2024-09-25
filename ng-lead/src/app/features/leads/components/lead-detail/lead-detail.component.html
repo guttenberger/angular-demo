@@ -1,1 +1,44 @@
-<p>lead-detail works!</p>
+<div class="container">
+  <ng-container *ngIf="leadSignal() as lead; else notFound">
+    <mat-card>
+      <mat-card-title class="card-title">
+        <span>Lead Details</span>
+        <button mat-raised-button (click)="editLead(lead.id)">Edit</button>
+      </mat-card-title>
+      <mat-card-content>
+        <!-- Iterate over the fields using *ngFor -->
+        @for (field of fieldsToDisplay; track field) {
+          <div class="field">
+            <label class="label" [attr.for]="field"
+              >{{ field | propertyToTitle }}:</label
+            >
+            <span [id]="field">{{ lead[field] }}</span>
+          </div>
+        }
+      </mat-card-content>
+
+      <!-- Card actions section-->
+      <mat-card-actions>
+        <button mat-button (click)="newLead(lead.id)">New</button>
+        <button mat-button class="qualify-text" (click)="qualifyLead(lead.id)">
+          Qualify
+        </button>
+        <button mat-button class="reject-text" (click)="rejectLead(lead.id)">
+          Reject
+        </button>
+        <button
+          mat-button
+          class="contacted-text"
+          (click)="contactedLead(lead.id)"
+        >
+          Interviewed
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+
+  <!-- Error section if lead is not found -->
+  <ng-template #notFound>
+    <p>Lead could not be found.</p>
+  </ng-template>
+</div>
