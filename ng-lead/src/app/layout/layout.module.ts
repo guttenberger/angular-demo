@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { HeaderComponent } from './components/header/header.component';
@@ -13,6 +14,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { SidebarService } from './components/sidebar/services/sidebar.service';
 import { ResponsiveService } from '@core/services/responsive.service';
+import { BackButtonComponent } from '../shared/components/back-button/back-button.component';
 
 @NgModule({
   declarations: [HeaderComponent, SidebarComponent, LayoutComponent],
@@ -25,8 +27,10 @@ import { ResponsiveService } from '@core/services/responsive.service';
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
+    MatProgressBarModule,
     RouterLink,
     RouterLinkActive,
+    BackButtonComponent,
   ],
   providers: [SidebarService, ResponsiveService],
 })

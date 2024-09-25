@@ -1,6 +1,14 @@
 <!-- Header -->
 <app-header> </app-header>
 
+<!-- Loading Spinner -->
+<div class="progress-bar-container">
+  <mat-progress-bar
+    *ngIf="isLoadingSignal()"
+    mode="indeterminate"
+  ></mat-progress-bar>
+</div>
+
 <!-- Main Container -->
 <div class="main-container">
   <!-- Sidebar layout with content -->
@@ -8,6 +16,7 @@
 
   <!-- App Content -->
   <main class="content">
+    <app-back-button></app-back-button>
     <ng-content select="[app-content]"></ng-content>
   </main>
 </div>

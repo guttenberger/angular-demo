@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+
+import { LoadingService } from '@core/services/loading.service';
 
 @Component({
   selector: 'app-layout',
@@ -8,4 +10,10 @@ import { Component } from '@angular/core';
     class: 'layout-component',
   },
 })
-export class LayoutComponent {}
+export class LayoutComponent {
+  // Services
+  readonly #loadingService = inject(LoadingService);
+
+  // State
+  protected readonly isLoadingSignal = this.#loadingService.loadingSignal;
+}
