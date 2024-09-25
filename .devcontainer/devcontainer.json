@@ -11,7 +11,10 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"EditorConfig.EditorConfig"
+				"EditorConfig.EditorConfig",
+				"Angular.ng-template",
+				"streetsidesoftware.code-spell-checker",
+				"rvest.vs-code-prettier-eslint"
 			]
 		}
 	}
