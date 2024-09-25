@@ -1,0 +1,12 @@
+@mixin theme($theme) {
+  mat-progress-bar {
+    height: 4px;
+    transition: opacity 0.3s ease; /* Smooth fade-in and fade-out */
+    opacity: 1;
+
+    /* When not displayed */
+    &.ng-leave {
+      opacity: 0;
+    }
+  }
+}

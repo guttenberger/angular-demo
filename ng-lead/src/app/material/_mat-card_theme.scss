@@ -1,0 +1,11 @@
+@mixin theme($theme) {
+  mat-card-title {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  mat-card-actions {
+    justify-content: end;
+  }
+}

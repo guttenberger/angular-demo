@@ -1,8 +1,21 @@
-// index.scss
+// override material components
 @use "./_mat-toolbar_theme" as toolbar;
-@use "./mat-sidenav_theme" as sidenav;
+@use "./mat-sidenav_theme" as sideNav;
+@use "./mat-progress-bar_theme" as progressBar;
+@use "./mat-card_theme" as cardTitle;
+@use "./_mat-snackbar_theme" as snackbar;
+
+// use theme in custom components
+@use "../pages/not-found/not-found.component" as notFoundPage;
+@use "../pages/dashboard/dashboard.component" as dashboard;
 
 @mixin all-themes($theme) {
   @include toolbar.theme($theme);
-  @include sidenav.theme($theme);
+  @include sideNav.theme($theme);
+  @include progressBar.theme($theme);
+  @include cardTitle.theme($theme);
+  @include snackbar.theme($theme);
+
+  @include dashboard.theme($theme);
+  @include notFoundPage.theme($theme);
 }

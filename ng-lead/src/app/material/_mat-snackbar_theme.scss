@@ -1,0 +1,22 @@
+@mixin theme($theme) {
+  .snackbar-success {
+    > :first-child {
+      background-color: #4caf50; /* Material Green */
+      color: white;
+    }
+  }
+
+  .snackbar-error {
+    > :first-child {
+    background-color: #f44336; /* Material Red */
+    color: white;
+    }
+  }
+
+  .snackbar-info {
+    > :first-child {
+    background-color: #2196f3; /* Material Blue */
+    color: white;
+    }
+  }
+}
