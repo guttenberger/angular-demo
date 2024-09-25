@@ -2,18 +2,6 @@ import { Lead } from './lead';
 
 export const LEAD_MOCK_DATA: Lead[] = [
   {
-    id: 1,
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    status: 'New',
-    phone: '555-555-5555',
-    currentCompany: 'Doe Corp',
-    positionApplied: 'Software Engineer',
-    yearsOfExperience: 5,
-    skills: ['JavaScript', 'Angular', 'Node.js'],
-    resumeUrl: 'https://example.com/resume/johndoe.pdf',
-  },
-  {
     id: 2,
     name: 'Jane Smith',
     email: 'jane.smith@example.com',
