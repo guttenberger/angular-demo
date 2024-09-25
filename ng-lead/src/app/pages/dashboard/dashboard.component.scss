@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 @mixin theme($theme) {
-  .icon {
+  .dashboard-icon {
     color: mat.get-theme-color($theme, primary, 50);
   }
 
@@ -23,7 +23,7 @@
   transition: background-color 0.3s;
 }
 
-.icon {
+.dashboard-icon {
   display: block; /* Ensure the icon behaves like a block-level element */
   width: 60px;
   height: 60px;
