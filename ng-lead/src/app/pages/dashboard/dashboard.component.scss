@@ -1,0 +1,32 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  .icon {
+    color: mat.get-theme-color($theme, primary, 50);
+  }
+
+  .tile-card:hover {
+    background-color: mat.get-theme-color($theme, primary, 90);
+  }
+}
+
+:host.dashboard-container {
+  padding: 20px;
+  max-height: 250px;
+}
+
+.tile-card {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.icon {
+  display: block; /* Ensure the icon behaves like a block-level element */
+  width: 60px;
+  height: 60px;
+  font-size: 64px;
+  margin-bottom: 10px;
+}
