@@ -1,26 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LeadDetailComponent } from './components/lead-detail/lead-detail.component';
-import { LeadFormComponent } from './components/lead-form/lead-form.component';
+import { LEAD_FORM_ROUTES } from './components/lead-form/lead-form.routes';
+import { LEAD_LIST_ROUTES } from './components/lead-list/lead-list.routes';
 import { LeadResolver } from './lead.resolver';
 import { LeadsStoreModule } from './store/leads-store.module';
-import { LEAD_LIST_ROUTES } from './components/lead-list/lead-list.routes';
 
 const routes: Routes = [
   ...LEAD_LIST_ROUTES,
-  {
-    path: 'create',
-    component: LeadFormComponent,
-  },
-  {
-    path: 'edit/:id',
-    component: LeadFormComponent,
-    resolve: { lead: LeadResolver },
-  },
+  ...LEAD_FORM_ROUTES,
   {
     path: 'detail/:id',
-    component: LeadDetailComponent,
+    loadComponent: () =>
+      import('./components/lead-detail/lead-detail.component').then(
+        (m) => m.LeadDetailComponent,
+      ),
     resolve: { lead: LeadResolver },
   },
 ];
