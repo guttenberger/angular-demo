@@ -1,6 +1,6 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, Injector, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,9 +8,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 
-import { LeadListService } from './services/lead-list.service';
 import { Lead, LeadStatus } from '@features/leads/models/lead';
 import { PropertyToTitlePipe } from '@shared/pipes/property-to-title.pipe';
+import { LeadListServiceFactory } from './services/lead-list-service.factory';
+import { LeadListService } from './services/lead-list.service';
+import { LeadListServiceMap } from './services/lead-list-service.map';
 
 @Component({
   selector: 'app-lead-list',
@@ -28,17 +30,26 @@ import { PropertyToTitlePipe } from '@shared/pipes/property-to-title.pipe';
     PropertyToTitlePipe,
     ScrollingModule,
   ],
+  providers: [
+    // Provides all lead list service classes based on routes
+    ...Object.values(LeadListServiceMap),
+    {
+      provide: LeadListService,
+      useFactory: LeadListServiceFactory,
+      deps: [Injector],
+    },
+  ],
 })
 export class LeadListComponent implements OnInit {
   // Services
   readonly #router = inject(Router);
-  readonly #leadListService = inject(LeadListService); // provide in route module
+  readonly #leadListService = inject(LeadListService);
 
   // State
   protected readonly title = this.#leadListService.title;
   protected readonly leadsSignal = this.#leadListService.entitiesSignal;
   protected readonly isLoadingSignal = this.#leadListService.isLoadingSignal;
-  protected readonly viewModel = this.#leadListService.viewModel!;
+  protected readonly viewModel = this.#leadListService.viewModel;
   protected readonly isDataAvailable = computed(
     () => this.leadsSignal().length > 0 || !this.isLoadingSignal(),
   );
