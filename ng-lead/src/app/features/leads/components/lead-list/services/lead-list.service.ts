@@ -23,7 +23,9 @@ export abstract class LeadListService {
 
   // State
   readonly title: string;
-  readonly viewModel: Required<LeadListServiceOptions['viewModel']>;
+  readonly viewModel: NonNullable<
+    Required<LeadListServiceOptions['viewModel']>
+  >;
 
   // Signals
   readonly entitiesSignal: Signal<Lead[]>;
