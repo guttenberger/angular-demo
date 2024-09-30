@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LEAD_FORM_ROUTES } from './components/lead-form/lead-form.routes';
 import { LEAD_LIST_ROUTES } from './components/lead-list/lead-list.routes';
 import { LeadResolver } from './lead.resolver';
-import { LeadsStoreModule } from './store/leads-store.module';
 
 const routes: Routes = [
   ...LEAD_LIST_ROUTES,
@@ -20,7 +19,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), LeadsStoreModule],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class LeadsRoutingModule {}
