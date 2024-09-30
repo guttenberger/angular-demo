@@ -1,6 +1,6 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, Injector, OnInit } from '@angular/core';
+import { Component, inject, Injector, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -50,9 +50,6 @@ export class LeadListComponent implements OnInit {
   protected readonly leadsSignal = this.#leadListService.entitiesSignal;
   protected readonly isLoadingSignal = this.#leadListService.isLoadingSignal;
   protected readonly viewModel = this.#leadListService.viewModel;
-  protected readonly isDataAvailable = computed(
-    () => this.leadsSignal().length > 0 || !this.isLoadingSignal(),
-  );
   protected readonly leadStatus = LeadStatus;
 
   // Table properties
@@ -64,8 +61,6 @@ export class LeadListComponent implements OnInit {
     'skills',
   ];
   protected readonly allColumns = [...this.textColumns, 'actions'];
-
-  // Skeleton properties
   protected readonly skeletonRows = new Array(5);
 
   ngOnInit(): void {
