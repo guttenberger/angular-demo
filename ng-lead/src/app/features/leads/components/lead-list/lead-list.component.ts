@@ -49,7 +49,6 @@ export class LeadListComponent implements OnInit {
   protected readonly isLoadingSignal = this.#leadListService.isLoadingSignal;
   protected readonly viewModel = this.#leadListService.viewModel;
   protected readonly leadStatus = LeadStatus;
-
   // Table properties
   protected readonly textColumns: (keyof Lead)[] = [
     'name',
@@ -60,6 +59,9 @@ export class LeadListComponent implements OnInit {
   ];
   protected readonly allColumns = [...this.textColumns, 'actions'];
   protected readonly skeletonRows = new Array(5);
+
+  // Generalized status updater function
+  readonly #statusUpdater = this.#leadListService.updateLeadStatus;
 
   ngOnInit(): void {
     // fetch leads
@@ -74,23 +76,10 @@ export class LeadListComponent implements OnInit {
     this.#router.navigate([`/leads/detail`, id]);
   }
 
-  rejectLead(id: number): void {
-    this.#leadListService.updateLeadStatus(id, LeadStatus.Rejected);
-  }
-
-  unrejectLead(id: number): void {
-    this.#leadListService.updateLeadStatus(id, LeadStatus.New);
-  }
-
-  qualifyLead(id: number): void {
-    this.#leadListService.updateLeadStatus(id, LeadStatus.Qualified);
-  }
-
-  placedLead(id: number): void {
-    this.#leadListService.updateLeadStatus(id, LeadStatus.Placed);
-  }
-
-  contactedLead(id: number): void {
-    this.#leadListService.updateLeadStatus(id, LeadStatus.Contacted);
-  }
+  /// Specific status update methods
+  rejectLead = (id: number) => this.#statusUpdater(id, LeadStatus.Rejected);
+  unrejectLead = (id: number) => this.#statusUpdater(id, LeadStatus.New);
+  qualifyLead = (id: number) => this.#statusUpdater(id, LeadStatus.Qualified);
+  placedLead = (id: number) => this.#statusUpdater(id, LeadStatus.Placed);
+  contactedLead = (id: number) => this.#statusUpdater(id, LeadStatus.Contacted);
 }
