@@ -66,13 +66,7 @@ export class LeadListComponent implements OnInit {
   protected readonly allColumns = [...this.textColumns, 'actions'];
 
   // Skeleton properties
-  protected readonly skeletonRows = new Array(10);
-  protected readonly skeletonData = new Array(8).fill({
-    name: '',
-    email: '',
-    status: '',
-    actions: '',
-  });
+  protected readonly skeletonRows = new Array(5);
 
   ngOnInit(): void {
     // fetch leads
