@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { Lead, LeadStatus } from '@features/leads/models/lead';
 import { LeadService } from '@features/leads/services/lead.service';
@@ -28,9 +27,6 @@ export class CreateLeadFormService extends LeadFormService {
       id: 0,
     };
 
-    this.#leadService
-      .add(newLead)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.#location.back());
+    this.#leadService.add(newLead).subscribe(() => this.#location.back());
   }
 }

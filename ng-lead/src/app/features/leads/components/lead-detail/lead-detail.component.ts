@@ -3,13 +3,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  OnDestroy,
   signal,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 import { Lead, LeadStatus } from '@features/leads/models/lead';
 import { LeadService } from '@features/leads/services/lead.service';
@@ -23,14 +21,11 @@ import { PropertyToTitlePipe } from '@shared/pipes/property-to-title.pipe';
   standalone: true,
   imports: [MatButtonModule, MatCardModule, CommonModule, PropertyToTitlePipe],
 })
-export class LeadDetailComponent implements OnDestroy {
+export class LeadDetailComponent {
   // Services
   readonly #route = inject(ActivatedRoute);
   readonly #router = inject(Router);
   readonly #leadService = inject(LeadService);
-
-  // Subscriptions
-  readonly #subscriptions = new Subscription();
 
   // State
   protected leadSignal = signal<Lead>(this.#route.snapshot.data['lead']);
@@ -48,11 +43,9 @@ export class LeadDetailComponent implements OnDestroy {
 
   // method to update lead status
   #updateLeadStatus(id: number, status: Lead['status']): void {
-    const updateLeadSubscription = this.#leadService
+    this.#leadService
       .update({ id, status })
       .subscribe((updatedLead) => this.leadSignal.set(updatedLead));
-
-    this.#subscriptions.add(updateLeadSubscription);
   }
 
   newLead(id: number): void {
@@ -73,9 +66,5 @@ export class LeadDetailComponent implements OnDestroy {
 
   editLead(id: number): void {
     this.#router.navigate(['/leads', 'edit', id]);
-  }
-
-  ngOnDestroy(): void {
-    this.#subscriptions.unsubscribe();
   }
 }

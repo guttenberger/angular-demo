@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { Lead } from '@features/leads/models/lead';
 import { LeadService } from '@features/leads/services/lead.service';
@@ -54,19 +53,15 @@ export class EditLeadFormService extends LeadFormService {
     };
     this.#leadService
       .update(updatedLead)
-      .pipe(takeUntilDestroyed())
       .subscribe(() => this.#location.back());
   }
 
   // Handle lead deletion
   override onDeleteLead(): void {
     if (confirm('Are you sure you want to delete this lead?')) {
-      this.#leadService
-        .delete(this.#initialLead.id)
-        .pipe(takeUntilDestroyed())
-        .subscribe(() => {
-          this.#location.historyGo(-2);
-        });
+      this.#leadService.delete(this.#initialLead.id).subscribe(() => {
+        this.#location.historyGo(-2);
+      });
     }
   }
 }
