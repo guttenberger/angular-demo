@@ -1,24 +1,17 @@
-import { inject, Injectable, OnDestroy } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { Lead, LeadStatus } from '@features/leads/models/lead';
 import { LeadService } from '@features/leads/services/lead.service';
 import { LeadFormService } from './lead-form.service';
 
 @Injectable()
-export class CreateLeadFormService
-  extends LeadFormService
-  implements OnDestroy
-{
+export class CreateLeadFormService extends LeadFormService {
   // Services
   readonly #location = inject(Location);
   readonly #leadService = inject(LeadService);
-
-  // Subject for handling subscription cleanup
-  private readonly destroy$ = new Subject<void>();
 
   constructor() {
     super({ sectionTitle: 'Add New Lead', submitButtonText: 'Create Lead' });
@@ -37,12 +30,7 @@ export class CreateLeadFormService
 
     this.#leadService
       .add(newLead)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntilDestroyed())
       .subscribe(() => this.#location.back());
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 }

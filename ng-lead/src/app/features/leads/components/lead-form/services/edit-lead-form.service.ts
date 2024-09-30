@@ -1,23 +1,19 @@
 import { Location } from '@angular/common';
-import { inject, Injectable, OnDestroy } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { Lead } from '@features/leads/models/lead';
 import { LeadService } from '@features/leads/services/lead.service';
 import { LeadFormService } from './lead-form.service';
 
 @Injectable()
-export class EditLeadFormService extends LeadFormService implements OnDestroy {
+export class EditLeadFormService extends LeadFormService {
   // Services
   readonly #route = inject(ActivatedRoute);
   readonly #location = inject(Location);
   readonly #leadService = inject(LeadService);
-
-  // Subject for handling subscription cleanup
-  private readonly destroy$ = new Subject<void>();
 
   // State
   readonly #initialLead: Lead = this.#route.snapshot.data['lead'];
@@ -58,7 +54,7 @@ export class EditLeadFormService extends LeadFormService implements OnDestroy {
     };
     this.#leadService
       .update(updatedLead)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntilDestroyed())
       .subscribe(() => this.#location.back());
   }
 
@@ -67,15 +63,10 @@ export class EditLeadFormService extends LeadFormService implements OnDestroy {
     if (confirm('Are you sure you want to delete this lead?')) {
       this.#leadService
         .delete(this.#initialLead.id)
-        .pipe(takeUntil(this.destroy$))
+        .pipe(takeUntilDestroyed())
         .subscribe(() => {
           this.#location.historyGo(-2);
         });
     }
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 }
