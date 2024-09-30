@@ -1,5 +1,4 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { CommonModule } from '@angular/common';
 import { Component, inject, Injector, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -20,7 +19,6 @@ import { LeadListServiceMap } from './services/lead-list-service.map';
   styleUrls: ['./lead-list.component.scss'],
   standalone: true,
   imports: [
-    CommonModule,
     MatCardModule,
     MatTableModule,
     MatButtonModule,

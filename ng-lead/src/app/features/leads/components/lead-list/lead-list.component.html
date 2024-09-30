@@ -2,15 +2,16 @@
   <!-- Card Title Row -->
   <mat-card-title class="card-title">
     <div>{{ title }}</div>
-    <button
-      mat-flat-button
-      (click)="createNewLead()"
-      class="create-new-button"
-      *ngIf="viewModel.showCreateButton"
-    >
-      <mat-icon>add</mat-icon>
-      Create New
-    </button>
+    @if (viewModel.showCreateButton) {
+      <button
+        mat-flat-button
+        (click)="createNewLead()"
+        class="create-new-button"
+      >
+        <mat-icon>add</mat-icon>
+        Create New
+      </button>
+    }
   </mat-card-title>
   <!-- Card Content -->
   <mat-card-content>
@@ -44,42 +45,35 @@
         <td mat-cell *matCellDef="let lead">
           @if (hasData) {
             <button mat-button (click)="viewLead(lead.id)">View</button>
-            <button
-              mat-button
-              (click)="rejectLead(lead.id)"
-              *ngIf="!viewModel.showUnrejectButton"
-            >
-              <span class="reject-text">Reject</span>
-            </button>
-            <button
-              mat-button
-              (click)="unrejectLead(lead.id)"
-              *ngIf="viewModel.showUnrejectButton"
-            >
-              <span class="reject-text">Unreject</span>
-            </button>
-            <button
-              mat-button
-              (click)="qualifyLead(lead.id)"
-              *ngIf="viewModel.showQualifyButton"
-            >
-              <span class="qualify-text">Qualify</span>
-            </button>
-            <button
-              mat-button
-              (click)="contactedLead(lead.id)"
-              *ngIf="viewModel.showPlacedButton"
-              [disabled]="lead.status === leadStatus.Contacted"
-            >
-              <span class="contacted-text">Interviewed</span>
-            </button>
-            <button
-              mat-button
-              (click)="placedLead(lead.id)"
-              *ngIf="viewModel.showPlacedButton"
-            >
-              <span class="placed-text">Placed</span>
-            </button>
+            @if (!viewModel.showUnrejectButton) {
+              <button mat-button (click)="rejectLead(lead.id)">
+                <span class="reject-text">Reject</span>
+              </button>
+            }
+            @if (viewModel.showUnrejectButton) {
+              <button mat-button (click)="unrejectLead(lead.id)">
+                <span class="reject-text">Unreject</span>
+              </button>
+            }
+            @if (viewModel.showQualifyButton) {
+              <button mat-button (click)="qualifyLead(lead.id)">
+                <span class="qualify-text">Qualify</span>
+              </button>
+            }
+            @if (viewModel.showPlacedButton) {
+              <button
+                mat-button
+                (click)="contactedLead(lead.id)"
+                [disabled]="lead.status === leadStatus.Contacted"
+              >
+                <span class="contacted-text">Interviewed</span>
+              </button>
+            }
+            @if (viewModel.showPlacedButton) {
+              <button mat-button (click)="placedLead(lead.id)">
+                <span class="placed-text">Placed</span>
+              </button>
+            }
           }
         </td>
       </ng-container>
