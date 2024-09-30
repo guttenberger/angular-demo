@@ -8,4 +8,4 @@ import { LeadsStoreModule } from './store/leads-store.module';
   declarations: [],
   imports: [CommonModule, LeadsRoutingModule, LeadsStoreModule],
 })
-export class LeadsModule {}
+export class LeadsModule {} // NgModule need to Lazy-load and register LeadsStoreModule once
