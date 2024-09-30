@@ -20,7 +20,7 @@
       [dataSource]="isDataAvailable() ? leadsSignal() : skeletonRows"
       class="mat-elevation-z8"
     >
-      <!-- Define Text Columns Dynamically -->
+      <!-- Text Columns -->
       @for (column of textColumns; track column) {
         <ng-container [matColumnDef]="column">
           <th mat-header-cell *matHeaderCellDef>
@@ -84,17 +84,21 @@
         </td>
       </ng-container>
 
+      <!-- Empty Table Row -->
+      <ng-container matColumnDef="noData">
+        <td
+          mat-cell
+          *matNoDataRow
+          [attr.colspan]="allColumns.length"
+          class="empty-message"
+        >
+          No leads available.
+        </td>
+      </ng-container>
+
       <!-- Header and Row Declarations -->
       <tr mat-header-row *matHeaderRowDef="allColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: allColumns"></tr>
     </table>
-
-    <!-- Empty Table -->
-    <div
-      *ngIf="isDataAvailable() && leadsSignal().length === 0"
-      class="empty-message"
-    >
-      No leads available.
-    </div>
   </mat-card-content>
 </mat-card>
