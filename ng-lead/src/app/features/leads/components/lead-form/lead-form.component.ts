@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, Injector, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -22,7 +21,6 @@ import { leadFormServiceFactory } from './services/lead-form-service.factory';
   styleUrls: ['./lead-form.component.scss'],
   standalone: true,
   imports: [
-    CommonModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,

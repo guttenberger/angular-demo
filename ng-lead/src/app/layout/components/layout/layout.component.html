@@ -3,10 +3,9 @@
 
 <!-- Loading Spinner -->
 <div class="progress-bar-container">
-  <mat-progress-bar
-    *ngIf="isLoadingSignal()"
-    mode="indeterminate"
-  ></mat-progress-bar>
+  @if (isLoadingSignal()) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
 </div>
 
 <!-- Main Container -->

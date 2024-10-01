@@ -11,7 +11,8 @@
     "test": "CHROME_BIN=/usr/local/bin/chrome ng test",
     "e2e": "ng e2e",
     "extract-i18n": "ng extract-i18n --output-path src/locale",
-    "prepare": "cd .. && husky ng-lead/.husky"
+    "prepare": "cd .. && husky ng-lead/.husky",
+    "update:flow": "ng g @angular/core:control-flow"
   },
   "private": true,
   "dependencies": {

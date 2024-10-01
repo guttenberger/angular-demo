@@ -1,4 +1,4 @@
-import { CommonModule, Location } from '@angular/common';
+import { Location } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +11,7 @@ import { traverseAndGetCurrentRouteData$ } from '@shared/utils/route-utils';
 @Component({
   selector: 'app-back-button',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './back-button.component.html',
   styleUrl: './back-button.component.scss',
 })

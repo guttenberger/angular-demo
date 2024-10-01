@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +18,7 @@ import { PropertyToTitlePipe } from '@shared/pipes/property-to-title.pipe';
   styleUrls: ['./lead-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, CommonModule, PropertyToTitlePipe],
+  imports: [MatButtonModule, MatCardModule, PropertyToTitlePipe],
 })
 export class LeadDetailComponent {
   // Services
