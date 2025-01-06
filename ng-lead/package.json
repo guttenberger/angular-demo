@@ -2,7 +2,7 @@
   "name": "ng-lead",
   "version": "0.0.0",
   "scripts": {
-    "start": "ng serve",
+    "start": "ng serve --host 127.0.0.1",
     "start:prod": "ng serve --configuration=production",
     "build": "ng build --localize",
     "build:prod": "ng build --configuration=production",
