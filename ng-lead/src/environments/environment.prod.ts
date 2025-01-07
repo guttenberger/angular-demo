@@ -8,4 +8,5 @@ const ngrxDataConfig: DefaultDataServiceConfig = {
 export const environment = {
   production: true,
   ngrxDataConfig,
+  mockApiDelay: 2000,
 };
