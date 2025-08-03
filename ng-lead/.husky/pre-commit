@@ -1,2 +1,2 @@
 cd ng-lead
-npm run lint
+npm run lint:fix
