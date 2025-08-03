@@ -6,6 +6,7 @@ import { SidebarService } from '../sidebar/services/sidebar.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  standalone: false,
 })
 export class HeaderComponent {
   protected readonly sidebarService = inject(SidebarService);

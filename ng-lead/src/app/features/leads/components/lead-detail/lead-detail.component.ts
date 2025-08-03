@@ -17,7 +17,6 @@ import { PropertyToTitlePipe } from '@shared/pipes/property-to-title.pipe';
   templateUrl: './lead-detail.component.html',
   styleUrls: ['./lead-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [MatButtonModule, MatCardModule, PropertyToTitlePipe],
 })
 export class LeadDetailComponent {

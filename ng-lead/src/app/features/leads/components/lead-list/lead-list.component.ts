@@ -17,7 +17,6 @@ import { LeadListServiceMap } from './services/lead-list-service.map';
   selector: 'app-lead-list',
   templateUrl: './lead-list.component.html',
   styleUrls: ['./lead-list.component.scss'],
-  standalone: true,
   imports: [
     MatCardModule,
     MatTableModule,

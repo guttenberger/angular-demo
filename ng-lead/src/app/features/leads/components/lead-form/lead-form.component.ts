@@ -19,7 +19,6 @@ import { leadFormServiceFactory } from './services/lead-form-service.factory';
   selector: 'app-lead-form',
   templateUrl: './lead-form.component.html',
   styleUrls: ['./lead-form.component.scss'],
-  standalone: true,
   imports: [
     MatCardModule,
     MatFormFieldModule,

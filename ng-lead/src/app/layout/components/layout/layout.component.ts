@@ -9,6 +9,7 @@ import { LoadingService } from '@core/services/loading.service';
   host: {
     class: 'layout-component',
   },
+  standalone: false,
 })
 export class LayoutComponent {
   // Services

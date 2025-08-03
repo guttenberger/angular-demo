@@ -10,7 +10,6 @@ import { traverseAndGetCurrentRouteData$ } from '@shared/utils/route-utils';
 
 @Component({
   selector: 'app-back-button',
-  standalone: true,
   imports: [MatButtonModule, MatIconModule],
   templateUrl: './back-button.component.html',
   styleUrl: './back-button.component.scss',

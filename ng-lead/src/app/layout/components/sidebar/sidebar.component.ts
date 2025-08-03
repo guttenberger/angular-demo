@@ -16,6 +16,7 @@ import { SidebarService } from './services/sidebar.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
   host: { class: 'sidebar-component' },
+  standalone: false,
 })
 export class SidebarComponent implements AfterViewInit {
   // Services
